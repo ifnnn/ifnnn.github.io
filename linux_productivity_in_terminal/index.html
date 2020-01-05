@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ying Cai <i@caiying.me>">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Linux 终端下的高效工具 - Ying 的随手学习笔记</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Linux \u7ec8\u7aef\u4e0b\u7684\u9ad8\u6548\u5de5\u5177";
+    var mkdocs_page_input_path = "linux_productivity_in_terminal.md";
+    var mkdocs_page_url = "/linux_productivity_in_terminal/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ying 的随手学习笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">关于</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">笔记</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Linux 终端下的高效工具</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#linux">Linux 终端下的高效工具</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ying 的随手学习笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>笔记 &raquo;</li>
+        
+      
+    
+    <li>Linux 终端下的高效工具</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="linux">Linux 终端下的高效工具<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>推荐工具</th>
+<th>其他类似</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>neovim</td>
+<td>vim</td>
+<td>更现代化的 vim</td>
+</tr>
+<tr>
+<td>zsh</td>
+<td></td>
+<td>更好用的 shell</td>
+</tr>
+<tr>
+<td>tmux</td>
+<td>screen / byobu</td>
+<td>终端复用工具</td>
+</tr>
+<tr>
+<td>fzf</td>
+<td></td>
+<td>命令行下模糊搜索工具</td>
+</tr>
+<tr>
+<td>ag</td>
+<td>grep / ack</td>
+<td>更高效简单的文本搜索工具</td>
+</tr>
+<tr>
+<td>tig</td>
+<td>git</td>
+<td>终端下交互管理 git 项目</td>
+</tr>
+<tr>
+<td>z</td>
+<td>autojump / cd</td>
+<td>智能模糊搜索, 跳转目录</td>
+</tr>
+<tr>
+<td>dstat</td>
+<td></td>
+<td>iostat, vmstat, ifstat 三合一</td>
+</tr>
+<tr>
+<td>slurm</td>
+<td></td>
+<td>网络流量监控</td>
+</tr>
+<tr>
+<td>exa</td>
+<td>ls</td>
+<td>检索目录工具</td>
+</tr>
+<tr>
+<td>fd</td>
+<td>find</td>
+<td>查找文件和目录</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sharkdp/bat">bat</a></td>
+<td>cat</td>
+<td>带语法高亮的文件查看</td>
+</tr>
+<tr>
+<td>ripgrep</td>
+<td>grep</td>
+<td>查找文件中的字符串</td>
+</tr>
+<tr>
+<td>jq</td>
+<td></td>
+<td>json 格式化工具</td>
+</tr>
+<tr>
+<td>glances</td>
+<td>htop / top</td>
+<td>系统监控工具</td>
+</tr>
+<tr>
+<td>axel</td>
+<td>curl / wget</td>
+<td>下载工具，多线程</td>
+</tr>
+<tr>
+<td>aria2</td>
+<td>wget</td>
+<td>下载工具，支持 BT</td>
+</tr>
+<tr>
+<td>sz/rz</td>
+<td></td>
+<td>交互式文件传输，上传下载方便</td>
+</tr>
+<tr>
+<td>ranger</td>
+<td></td>
+<td>vim 风格文件管理器</td>
+</tr>
+<tr>
+<td>tldr</td>
+<td>man</td>
+<td>缩短说明文档</td>
+</tr>
+<tr>
+<td>rsync</td>
+<td>sftp / scp</td>
+<td>SSH 协议文件同步</td>
+</tr>
+<tr>
+<td>mtr</td>
+<td>traceroute</td>
+<td>网络查询工具</td>
+</tr>
+<tr>
+<td>multitail</td>
+<td></td>
+<td>实时监控多个日志</td>
+</tr>
+<tr>
+<td>ccze</td>
+<td></td>
+<td>高亮显示日志</td>
+</tr>
+<tr>
+<td>mycli</td>
+<td></td>
+<td>交互式管理 mysql</td>
+</tr>
+<tr>
+<td>mitmproxy</td>
+<td></td>
+<td>命令行抓包工具</td>
+</tr>
+<tr>
+<td>httpie</td>
+<td>curl</td>
+<td>交互式的 http 客户端</td>
+</tr>
+<tr>
+<td>nnn</td>
+<td>du</td>
+<td>文件分析工具</td>
+</tr>
+<tr>
+<td>pydf</td>
+<td>df</td>
+<td>磁盘查询工具</td>
+</tr>
+<tr>
+<td>asciinema</td>
+<td></td>
+<td>终端录屏工具</td>
+</tr>
+<tr>
+<td>tpp</td>
+<td>reveal.js</td>
+<td>命令行下写 PPT</td>
+</tr>
+<tr>
+<td>thefuck</td>
+<td></td>
+<td>命令行拼写更正</td>
+</tr>
+</tbody>
+</table>
+<p>：</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../about/" class="btn btn-neutral" title="关于"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>2020 © 京ICP备18023798号-1</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../about/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
