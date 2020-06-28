@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ying Cai <i@caiying.me>">
+  <link rel="canonical" href="https://ifnnn.cn/ops-zk/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>常用的 ZK 调试手段 - Ying 的随手学习笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5e38\u7528\u7684 ZK \u8c03\u8bd5\u624b\u6bb5";
+    var mkdocs_page_input_path = "ops-zk.md";
+    var mkdocs_page_url = "/ops-zk/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ying 的随手学习笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">关于</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分享</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ppt-git-tutorial/">Git 入门手册</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">OPS</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-rabbitmq/">rabbitmq</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker/">docker</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker-alpine/">基于 alpine 的容器常用手段</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">常用的 ZK 调试手段</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">最佳实践</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-windows/">Windows</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ying 的随手学习笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>OPS &raquo;</li>
+        
+      
+    
+    <li>常用的 ZK 调试手段</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="zookeeper">ZooKeeper 常用命令<a class="headerlink" href="#zookeeper" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启动ZK服务</td>
+<td><code>sh bin/zkServer.sh start</code></td>
+<td></td>
+</tr>
+<tr>
+<td>查看ZK服务状态</td>
+<td><code>sh bin/zkServer.sh status</code></td>
+<td></td>
+</tr>
+<tr>
+<td>停止ZK服务</td>
+<td><code>sh bin/zkServer.sh stop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>重启ZK服务</td>
+<td><code>sh bin/zkServer.sh restart</code></td>
+<td></td>
+</tr>
+<tr>
+<td>连接服务器</td>
+<td><code>sh bin/zkCli.sh -server 127.0.0.1:2181</code></td>
+<td></td>
+</tr>
+<tr>
+<td>查看哪个节点被选择作为follower或者leader</td>
+<td><code>echo stat | nc 127.0.0.1 2181</code></td>
+<td></td>
+</tr>
+<tr>
+<td>测试是否启动了该Server</td>
+<td><code>echo ruok | nc 127.0.0.1 2181</code></td>
+<td>若回复imok表示已经启动</td>
+</tr>
+<tr>
+<td>列出未经处理的会话和临时节点</td>
+<td><code>echo dump | nc 127.0.0.1 2181</code></td>
+<td></td>
+</tr>
+<tr>
+<td>关掉server</td>
+<td><code>echo kill | nc 127.0.0.1 2181</code></td>
+<td></td>
+</tr>
+<tr>
+<td>输出相关服务配置的详细信息</td>
+<td><code>echo conf | nc 127.0.0.1 2181</code></td>
+<td></td>
+</tr>
+<tr>
+<td>列出所有连接到服务器的客户端的完全的连接 / 会话的详细信息</td>
+<td><code>echo cons | nc 127.0.0.1 2181</code></td>
+<td></td>
+</tr>
+<tr>
+<td>输出关于服务环境的详细信息</td>
+<td><code>echo envi |nc 127.0.0.1 2181</code></td>
+<td>区别于 conf 命令</td>
+</tr>
+<tr>
+<td>列出未经处理的请求</td>
+<td><code>echo reqs | nc 127.0.0.1 2181</code></td>
+<td></td>
+</tr>
+<tr>
+<td>列出服务器 watch 的详细信息</td>
+<td><code>echo wchs | nc 127.0.0.1 2181</code></td>
+<td></td>
+</tr>
+<tr>
+<td>通过 session 列出服务器 watch 的详细信息</td>
+<td><code>echo wchc | nc 127.0.0.1 2181</code></td>
+<td>输出是一个与 watch 相关的会话的列表</td>
+</tr>
+<tr>
+<td>通过路径列出服务器 watch 的详细信息</td>
+<td><code>echo wchp | nc 127.0.0.1 2181</code></td>
+<td>输出一个与 session 相关的路径。</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../env-linux/" class="btn btn-neutral float-right" title="Linux">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ops-docker-alpine/" class="btn btn-neutral" title="基于 alpine 的容器常用手段"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© Copyright 2020, 京ICP备18023798号-1</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../ops-docker-alpine/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../env-linux/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

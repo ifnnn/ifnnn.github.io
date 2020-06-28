@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ying Cai <i@caiying.me>">
+  <link rel="canonical" href="https://ifnnn.cn/ops-oss/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>OSS 对象存储 - Ying 的随手学习笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "OSS \u5bf9\u8c61\u5b58\u50a8";
+    var mkdocs_page_input_path = "ops-oss.md";
+    var mkdocs_page_url = "/ops-oss/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ying 的随手学习笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">关于</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分享</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ppt-git-tutorial/">Git 入门手册</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">OPS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-rabbitmq/">rabbitmq</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker/">docker</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker-alpine/">基于 alpine 的容器常用手段</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-zk/">常用的 ZK 调试手段</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">最佳实践</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-windows/">Windows</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ying 的随手学习笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>OSS 对象存储</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="oss">OSS 对象存储<a class="headerlink" href="#oss" title="Permanent link">&para;</a></h1>
+<h2 id="_1">七牛<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<pre><code class="shell"># 登录, 会话的有效期是 3600 秒（一个小时），一个小时后需要重新登录。
+qrsctl login &lt;User&gt; &lt;Passwd&gt;
+
+# 查看帐号信息
+qrsctl info
+
+# 查看密钥(AccessKey/SecretKey), 网站上默认使用的应用名称是：default
+qrsctl appinfo &lt;AppName&gt;
+
+# 创建空间(Bucket)
+qrsctl mkbucket2 &lt;Bucket&gt;
+
+# 将空间设置为公开
+qrsctl private &lt;Bucket&gt; 0
+
+# 将空间设置为私有
+qrsctl private &lt;Bucket&gt; 1
+
+# 列出所有空间(Buckets)
+qrsctl buckets
+
+# 查看指定空间(Bucket)信息
+qrsctl bucketinfo &lt;Bucket&gt;
+
+# 空间授权
+qrsctl share  &lt;Bucket&gt; &lt;Uid&gt; &lt;Permission&gt;
+
+# 设置镜像存储（源站加速）
+qrsctl img &lt;Bucket&gt; &lt;SrcUrl&gt;[,&lt;SrcUrl2&gt;,...] [SrcHost]
+
+# 取消镜像存储
+qrsctl unimg &lt;Bucket&gt;
+
+# 设置镜像存储回源容错属性
+qrsctl imgsft &lt;Bucket&gt; &lt;imgsft&gt;
+
+# 清除cdn缓存, 最多指定10个 Url
+qrsctl cdn/refresh &lt;Url1&gt; &lt;Url2&gt;...&lt;UrlN&gt;
+
+# 设置API规格别名
+qrsctl style &lt;Bucket&gt; &lt;aliasName&gt; &lt;fop&gt;
+
+# 取消API规格别名
+qrsctl unstyle &lt;Bucket&gt; &lt;Name&gt;
+
+# 设置友好URL分隔符
+qrsctl separator &lt;Bucket&gt; &lt;Sep&gt;
+
+# 设置原文件/图保护
+qrsctl protected &lt;Bucket&gt; &lt;Protected&gt;
+
+# 上传文件
+qrsctl put &lt;Bucket&gt; &lt;Key&gt; &lt;SrcFile&gt;
+
+# 上传一个大文件（超过 4MB），加上选项 c　会启用切片并行上传一个大文件。（超过 4MB）
+qrsctl put -c &lt;Bucket&gt; &lt;Key&gt; &lt;SrcFile&gt;
+
+# 下载文件
+qrsctl get &lt;Bucket&gt; &lt;Key&gt; &lt;DestFile&gt;
+
+# 查看文件
+qrsctl stat &lt;Bucket&gt; &lt;Key&gt;
+
+# 复制文件，将 Bucket1 中的 KeySrc 复制到 Bucket2 并命名为 KeyDest, Bucket1 和 Bucket2 可以是同一个。
+qrsctl cp &lt;Bucket1:KeySrc&gt; &lt;Bucket2:KeyDest&gt;
+
+# 移动文件，将 Bucket1 中的 KeyOld 移动到 Bucket2 并命名为 KeyNew, Bucket1 和 Bucket2 可以是同一个。
+qrsctl mv &lt;Bucket1:KeyOld&gt; &lt;Bucket2:KeyNew&gt;
+
+# 删除文件
+qrsctl del &lt;Bucket&gt; &lt;Key&gt;
+</code></pre>
+
+<pre><code class="shell"># 如执行过程中无错误，则会在屏幕上输出OK字样。
+qrsctl command [arguments] &amp;&amp; echo &quot;OK&quot;
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© Copyright 2020, 京ICP备18023798号-1</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ying Cai <i@caiying.me>">
+  <link rel="canonical" href="https://ifnnn.cn/env_sbt_logback/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Env sbt logback - Ying 的随手学习笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Env sbt logback";
+    var mkdocs_page_input_path = "env_sbt_logback.md";
+    var mkdocs_page_url = "/env_sbt_logback/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ying 的随手学习笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">关于</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分享</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ppt-git-tutorial/">Git 入门手册</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">OPS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-rabbitmq/">rabbitmq</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker/">docker</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker-alpine/">基于 alpine 的容器常用手段</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-zk/">常用的 ZK 调试手段</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">最佳实践</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-windows/">Windows</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ying 的随手学习笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Env sbt logback</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/logback/base.xml</p>
+<p>http://loveshisong.cn/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/2016-11-03-Spring-Boot%E4%B8%AD%E7%9A%84%E6%97%A5%E5%BF%97.html</p>
+<p>http://logback.qos.ch/manual/layouts.html</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;configuration scan=&quot;true&quot; scanPeriod=&quot;60 seconds&quot; debug=&quot;false&quot;&gt;
+    &lt;!-- ref org/springframework/boot/logging/logback/base.xml  --&gt;
+
+    &lt;conversionRule conversionWord=&quot;clr&quot; converterClass=&quot;org.springframework.boot.logging.logback.ColorConverter&quot; /&gt;
+    &lt;conversionRule conversionWord=&quot;wex&quot; converterClass=&quot;org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter&quot; /&gt;
+    &lt;conversionRule conversionWord=&quot;wEx&quot; converterClass=&quot;org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter&quot; /&gt;
+
+    &lt;property name=&quot;LOG_PATH&quot; value=&quot;${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}&quot;/&gt;
+    &lt;property name=&quot;CONSOLE_LOG_PATTERN&quot; value=&quot;${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}&quot;/&gt;
+    &lt;property name=&quot;FILE_LOG_PATTERN&quot; value=&quot;[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %level [%X{traceId},%X{spanId},%X{spanExportable}] %logger@%method:%line - %msg%n&quot;/&gt;
+
+    &lt;appender name=&quot;CONSOLE&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;
+        &lt;encoder&gt;
+            &lt;pattern&gt;${CONSOLE_LOG_PATTERN}&lt;/pattern&gt;
+        &lt;/encoder&gt;
+    &lt;/appender&gt;
+
+    &lt;appender name=&quot;FILE_ALL&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
+        &lt;encoder&gt;
+            &lt;pattern&gt;${FILE_LOG_PATTERN}&lt;/pattern&gt;
+        &lt;/encoder&gt;
+        &lt;file&gt;${LOG_PATH}/all.log&lt;/file&gt;
+        &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&quot;&gt;
+            &lt;fileNamePattern&gt;${LOG_PATH}/all.log.%d{yyyy-MM-dd}.%i.gz&lt;/fileNamePattern&gt;
+            &lt;maxFileSize&gt;${LOG_FILE_MAX_SIZE:-1024MB}&lt;/maxFileSize&gt;
+            &lt;maxHistory&gt;${LOG_FILE_MAX_HISTORY:-15}&lt;/maxHistory&gt;
+        &lt;/rollingPolicy&gt;
+    &lt;/appender&gt;
+
+    &lt;appender name=&quot;FILE_ERROR&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
+        &lt;encoder&gt;
+            &lt;pattern&gt;${FILE_LOG_PATTERN}&lt;/pattern&gt;
+        &lt;/encoder&gt;
+        &lt;file&gt;${LOG_PATH}/err.log&lt;/file&gt;
+        &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&quot;&gt;
+            &lt;fileNamePattern&gt;${LOG_PATH}/err.log.%d{yyyy-MM-dd}.%i.gz&lt;/fileNamePattern&gt;
+            &lt;maxFileSize&gt;${LOG_FILE_MAX_SIZE:-1024MB}&lt;/maxFileSize&gt;
+            &lt;maxHistory&gt;${LOG_FILE_MAX_HISTORY:-30}&lt;/maxHistory&gt;
+        &lt;/rollingPolicy&gt;
+        &lt;filter class=&quot;ch.qos.logback.classic.filter.LevelFilter&quot;&gt;
+            &lt;level&gt;ERROR&lt;/level&gt;
+            &lt;onMatch&gt;ACCEPT&lt;/onMatch&gt;
+            &lt;onMismatch&gt;DENY&lt;/onMismatch&gt;
+        &lt;/filter&gt;
+    &lt;/appender&gt;
+
+    &lt;root level=&quot;DEBUG&quot;&gt;
+        &lt;appender-ref ref=&quot;CONSOLE&quot; /&gt;
+        &lt;appender-ref ref=&quot;FILE_ALL&quot; /&gt;
+        &lt;appender-ref ref=&quot;FILE_ERROR&quot; /&gt;
+    &lt;/root&gt;
+
+    &lt;logger name=&quot;org.apache.catalina.startup.DigesterFactory&quot; level=&quot;ERROR&quot;/&gt;
+    &lt;logger name=&quot;org.apache.catalina.util.LifecycleBase&quot; level=&quot;ERROR&quot;/&gt;
+    &lt;logger name=&quot;org.apache.coyote.http11.Http11NioProtocol&quot; level=&quot;WARN&quot;/&gt;
+    &lt;logger name=&quot;org.apache.sshd.common.util.SecurityUtils&quot; level=&quot;WARN&quot;/&gt;
+    &lt;logger name=&quot;org.apache.tomcat.util.net.NioSelectorPool&quot; level=&quot;WARN&quot;/&gt;
+    &lt;logger name=&quot;org.eclipse.jetty.util.component.AbstractLifeCycle&quot; level=&quot;ERROR&quot;/&gt;
+    &lt;logger name=&quot;org.hibernate.validator.internal.util.Version&quot; level=&quot;WARN&quot;/&gt;
+&lt;/configuration&gt;
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© Copyright 2020, 京ICP备18023798号-1</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

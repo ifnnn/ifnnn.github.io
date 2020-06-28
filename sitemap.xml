@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-     <loc>http://ifnnn.cn/</loc>
-     <lastmod>2020-01-05</lastmod>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://ifnnn.cn/</loc>
+     <lastmod>2020-06-28</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://ifnnn.cn/about/</loc>
-     <lastmod>2020-01-05</lastmod>
+    </url><url>
+     <loc>https://ifnnn.cn/about/</loc>
+     <lastmod>2020-06-28</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://ifnnn.cn/linux_productivity_in_terminal/</loc>
-     <lastmod>2020-01-05</lastmod>
+    </url><url>
+     <loc>https://ifnnn.cn/ppt-git-tutorial/</loc>
+     <lastmod>2020-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ifnnn.cn/ops-rabbitmq/</loc>
+     <lastmod>2020-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ifnnn.cn/ops-docker/</loc>
+     <lastmod>2020-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ifnnn.cn/ops-docker-alpine/</loc>
+     <lastmod>2020-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ifnnn.cn/ops-zk/</loc>
+     <lastmod>2020-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ifnnn.cn/env-linux/</loc>
+     <lastmod>2020-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ifnnn.cn/env-windows/</loc>
+     <lastmod>2020-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

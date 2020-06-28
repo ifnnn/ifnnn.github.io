@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ying Cai <i@caiying.me>">
+  <link rel="canonical" href="https://ifnnn.cn/dev-dubbo-monitor/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Dubbo Monitor for prometheus - Ying 的随手学习笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Dubbo Monitor for prometheus";
+    var mkdocs_page_input_path = "dev-dubbo-monitor.md";
+    var mkdocs_page_url = "/dev-dubbo-monitor/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ying 的随手学习笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">关于</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分享</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ppt-git-tutorial/">Git 入门手册</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">OPS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-rabbitmq/">rabbitmq</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker/">docker</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker-alpine/">基于 alpine 的容器常用手段</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-zk/">常用的 ZK 调试手段</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">最佳实践</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-windows/">Windows</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ying 的随手学习笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Dubbo Monitor for prometheus</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="dubbo-monitor-for-prometheus">Dubbo Monitor for prometheus<a class="headerlink" href="#dubbo-monitor-for-prometheus" title="Permanent link">&para;</a></h1>
+<h2 id="_1">调用链路<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="1-monitorfilter-onresponse">1. <code>MonitorFilter</code> 的<code>onResponse</code><a class="headerlink" href="#1-monitorfilter-onresponse" title="Permanent link">&para;</a></h3>
+<pre><code class="java">// org.apache.dubbo.monitor.support.MonitorFilter.MonitorListener:onResponse()
+
+@Override
+public void onResponse(Result result, Invoker&lt;?&gt; invoker, Invocation invocation) {
+    if (invoker.getUrl().hasParameter(MONITOR_KEY)) {
+        collect(invoker, invocation, result, RpcContext.getContext().getRemoteHost(), Long.valueOf(invocation.getAttachment(MONITOR_FILTER_START_TIME)), false);
+        getConcurrent(invoker, invocation).decrementAndGet(); // count down
+    }
+}
+
+
+// org.apache.dubbo.monitor.support.MonitorFilter
+
+/**
+ * The collector logic, it will be handled by the default monitor
+ *
+ * @param invoker
+ * @param invocation
+ * @param result     the invoke result
+ * @param remoteHost the remote host address
+ * @param start      the timestamp the invoke begin
+ * @param error      if there is an error on the invoke
+ */
+private void collect(Invoker&lt;?&gt; invoker, Invocation invocation, Result result, String remoteHost, long start, boolean error) {
+    try {
+        URL monitorUrl = invoker.getUrl().getUrlParameter(MONITOR_KEY);
+        Monitor monitor = monitorFactory.getMonitor(monitorUrl);
+        if (monitor == null) {
+            return;
+        }
+        URL statisticsURL = createStatisticsUrl(invoker, invocation, result, remoteHost, start, error);
+        monitor.collect(statisticsURL);
+    } catch (Throwable t) {
+        logger.warn(&quot;Failed to monitor count service &quot; + invoker.getUrl() + &quot;, cause: &quot; + t.getMessage(), t);
+    }
+}
+</code></pre>
+
+<h3 id="2">2. 根据启动日志<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<pre><code class="shell">2020-05-02 17:58:25.201 DEBUG 53784 --- [           main] o.a.d.c.e.AdaptiveClassCodeGenerator     :  [DUBBO] package org.apache.dubbo.monitor;
+</code></pre>
+
+<p>可看到 <code>MonitorFactory$Adaptive</code> 的代码</p>
+<pre><code class="java">import org.apache.dubbo.common.extension.ExtensionLoader;
+
+public class MonitorFactory$Adaptive implements org.apache.dubbo.monitor.MonitorFactory {
+    public org.apache.dubbo.monitor.Monitor getMonitor(org.apache.dubbo.common.URL arg0)  {
+        if (arg0 == null) throw new IllegalArgumentException(&quot;url == null&quot;);
+        org.apache.dubbo.common.URL url = arg0;
+        String extName = ( url.getProtocol() == null ? &quot;dubbo&quot; : url.getProtocol() );
+        if(extName == null) throw new IllegalStateException(&quot;Failed to get extension (org.apache.dubbo.monitor.MonitorFactory) name from url (&quot; + url.toString() + &quot;) use keys([protocol])&quot;);
+        org.apache.dubbo.monitor.MonitorFactory extension = (org.apache.dubbo.monitor.MonitorFactory)ExtensionLoader.getExtensionLoader(org.apache.dubbo.monitor.MonitorFactory.class).getExtension(extName);
+        return extension.getMonitor(arg0);
+    }
+}
+</code></pre>
+
+<p>参数 <code>org.apache.dubbo.common.URL</code> 为:</p>
+<p><code>dubbo://127.0.0.1:2181/org.apache.dubbo.registry.RegistryService?application=demo3-dubbo-provider&amp;dubbo=2.0.2&amp;logger=slf4j&amp;pid=53784&amp;protocol=registry&amp;qos.enable=false&amp;refer=application%3Ddemo3-dubbo-provider%26dubbo%3D2.0.2%26interface%3Dorg.apache.dubbo.monitor.MonitorService%26logger%3Dslf4j%26pid%3D53784%26qos.enable%3Dfalse%26register.ip%3D192.168.100.230%26release%3D2.7.4.1%26timestamp%3D1588413616161&amp;registry=zookeeper&amp;release=2.7.4.1&amp;timestamp=1588413505148</code></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© Copyright 2020, 京ICP备18023798号-1</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
