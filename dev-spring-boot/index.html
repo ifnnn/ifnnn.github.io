@@ -8,7 +8,7 @@
   
   <meta name="author" content="Ying Cai <i@caiying.me>">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Ops cd jenkins - Ying 的学习笔记</title>
+  <title>Dev spring boot - Ying 的学习笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ops cd jenkins";
-    var mkdocs_page_input_path = "ops_cd_jenkins.md";
-    var mkdocs_page_url = "/ops_cd_jenkins/";
+    var mkdocs_page_name = "Dev spring boot";
+    var mkdocs_page_input_path = "dev-spring-boot.md";
+    var mkdocs_page_url = "/dev-spring-boot/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -77,6 +77,10 @@
                     
     <a class="" href="../dsa-sort/">排序</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../dsa-indexing/">索引</a>
+                </li>
     </ul>
 	    </li>
           
@@ -98,7 +102,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../ops-zk/">运维 - zk</a>
+    <a class="" href="../ops-zk/">运维 - zookeeper</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ops-jenkins/">运维 - jenkins</a>
                 </li>
     </ul>
 	    </li>
@@ -109,11 +117,15 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../env-dotfiles/">dotfile</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../env-linux/">Linux</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../env-windows/">Windows</a>
+    <a class="" href="../env-python/">Python</a>
                 </li>
     </ul>
 	    </li>
@@ -140,7 +152,7 @@
     
       
     
-    <li>Ops cd jenkins</li>
+    <li>Dev spring boot</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -150,7 +162,13 @@
           <div role="main">
             <div class="section">
               
-                
+                <ol>
+<li>为什么不用 logback.xml 而用 logback-spring.xml</li>
+</ol>
+<p>Spring Boot包含许多Logback扩展，可以帮助进行高级配置。您可以在logback-spring.xml配置文件中使用这些扩展名。由于标准logback.xml配置文件加载过早，因此无法在其中使用扩展。您需要使用logback-spring.xml或定义 logging.config属性。 </p>
+<p>官方推荐使用的xml名字的格式为：logback-spring.xml而不是logback.xml，至于为什么，因为带spring后缀的可以使用<springProfile>这个标签。</p>
+<p>官方文档：https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-custom-log-configuration
+类似博文：https://www.cnblogs.com/luckyliulin/p/10815224.html</p>
               
             </div>
           </div>

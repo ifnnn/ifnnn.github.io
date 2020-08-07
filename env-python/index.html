@@ -8,7 +8,7 @@
   
   <meta name="author" content="Ying Cai <i@caiying.me>">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Ops ci jenkins - Ying 的学习笔记</title>
+  <title>Python - Ying 的学习笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ops ci jenkins";
-    var mkdocs_page_input_path = "ops_ci_jenkins.md";
-    var mkdocs_page_url = "/ops_ci_jenkins/";
+    var mkdocs_page_name = "Python";
+    var mkdocs_page_input_path = "env-python.md";
+    var mkdocs_page_url = "/env-python/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -77,6 +77,10 @@
                     
     <a class="" href="../dsa-sort/">排序</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../dsa-indexing/">索引</a>
+                </li>
     </ul>
 	    </li>
           
@@ -98,7 +102,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../ops-zk/">运维 - zk</a>
+    <a class="" href="../ops-zk/">运维 - zookeeper</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ops-jenkins/">运维 - jenkins</a>
                 </li>
     </ul>
 	    </li>
@@ -109,11 +117,21 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../env-linux/">Linux</a>
+    <a class="" href="../env-dotfiles/">dotfile</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../env-windows/">Windows</a>
+    <a class="" href="../env-linux/">Linux</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Python</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#python-env">python env</a></li>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -139,8 +157,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>最佳实践 &raquo;</li>
+        
+      
     
-    <li>Ops ci jenkins</li>
+    <li>Python</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -150,19 +172,49 @@
           <div role="main">
             <div class="section">
               
-                <p>jenkins 必备插件</p>
-<p><a href="https://plugins.jenkins.io/pipeline-utility-steps/">Pipeline Utility Steps</a></p>
-<p><a href="https://plugins.jenkins.io/emailext-template">Email Extension Template Plugin</a></p>
-<p><a href="https://plugins.jenkins.io/git-parameter">Git Parameter Plug-In</a></p>
-<p><a href="https://plugins.jenkins.io/generic-webhook-trigger/">Generic Webhook Trigger</a></p>
-<p><a href="https://plugins.jenkins.io/kubernetes-cli">Kubernetes CLI Plugin</a></p>
-<p><a href="https://plugins.jenkins.io/role-strategy">Role-based Authorization Strategy</a></p>
-<p><a href="https://plugins.jenkins.io/scm-sync-configuration">SCM Sync Configuration Plugin</a></p>
-<p><a href="https://plugins.jenkins.io/ansible">Ansible plugin</a></p>
+                <h2 id="python-env">python env<a class="headerlink" href="#python-env" title="Permanent link">&para;</a></h2>
+<p>anaconda</p>
+<pre><code class="shell">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn &lt;packagename&gt;
+
+pip install -i http://pypi.douban.com/simple --trusted-host pypi.douban.com &lt;packagename&gt;
+
+pip install -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com/pypi/simple/ &lt;packagename&gt;
+
+～/.pip/pip.conf / C:\Users\xx\pip，新建文件pip.ini
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host = pypi.tuna.tsinghua.edu.cn
+</code></pre>
+
+<pre><code>pip freeze &gt; requirements.txt
+
+pip install -r requirements.txt
+
+# pip freeze输出的是本地环境中所有三方包信息，但是会比pip list少几个包，因为pip，wheel，setuptools等包，是自带的而无法(un)install的，如果要显示所有包可以加上参数-all，即pip freeze -all
+
+pipreqs /home/project/location
+# Successfully saved requirements file in /home/project/location/requirements.txt
+
+virtualenv
+
+virtualenvwrapper
+
+# 有的时候virtualenv也会带来一些问题，由于virtualenv的启动、停止脚本都在特定文件夹，可能一段时间后，你可能会有很多个虚拟环境散落在系统各处，你可能忘记它们的名字甚至忘记它的位置。怎么来管理virtualenv?鉴于virtualenv不便于对虚拟环境集中管理，所以推荐直接使用virtualenvwrapper。virtualenvwrapper提供了一系列命令使得和虚拟环境工作变得便利。它把你所有的虚拟环境都放在一个地方。
+</code></pre>
+
+<p>https://ningyu1.github.io/site/post/67-python-requirements/</p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../env-linux/" class="btn btn-neutral" title="Linux"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -187,6 +239,8 @@
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
+      
+        <span><a href="../env-linux/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>

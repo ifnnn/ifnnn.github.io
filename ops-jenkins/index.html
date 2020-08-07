@@ -8,7 +8,7 @@
   
   <meta name="author" content="Ying Cai <i@caiying.me>">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Dev oauth2 - Ying 的学习笔记</title>
+  <title>运维 - jenkins - Ying 的学习笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Dev oauth2";
-    var mkdocs_page_input_path = "dev_oauth2.md";
-    var mkdocs_page_url = "/dev_oauth2/";
+    var mkdocs_page_name = "\u8fd0\u7ef4 - jenkins";
+    var mkdocs_page_input_path = "ops-jenkins.md";
+    var mkdocs_page_url = "/ops-jenkins/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -77,6 +77,10 @@
                     
     <a class="" href="../dsa-sort/">排序</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../dsa-indexing/">索引</a>
+                </li>
     </ul>
 	    </li>
           
@@ -98,7 +102,29 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../ops-zk/">运维 - zk</a>
+    <a class="" href="../ops-zk/">运维 - zookeeper</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">运维 - jenkins</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#jenkins">jenkins 笔记</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#_1">常用插件</a></li>
+        
+            <li><a class="toctree-l4" href="#docker-jenkins">使用 docker 版 jenkins</a></li>
+        
+            <li><a class="toctree-l4" href="#_2">必备方案</a></li>
+        
+            <li><a class="toctree-l4" href="#faq">FAQ</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -109,11 +135,15 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../env-dotfiles/">dotfile</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../env-linux/">Linux</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../env-windows/">Windows</a>
+    <a class="" href="../env-python/">Python</a>
                 </li>
     </ul>
 	    </li>
@@ -139,8 +169,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>OPS &raquo;</li>
+        
+      
     
-    <li>Dev oauth2</li>
+    <li>运维 - jenkins</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -150,14 +184,56 @@
           <div role="main">
             <div class="section">
               
-                <p>https://projects.spring.io/spring-security-oauth/docs/oauth2.html</p>
-<p>找图片
-https://github.com/terasolunaorg/terasolunaorg.github.com/blob/master/guideline/5.3.0.RELEASE/en/_images/OAuth_OAuth2Architecture.png</p>
-<p>https://github.com/spring-projects/spring-security/blob/5.3.1.RELEASE/samples/boot/oauth2authorizationserver/README.adoc</p>
+                <h1 id="jenkins">jenkins 笔记<a class="headerlink" href="#jenkins" title="Permanent link">&para;</a></h1>
+<h2 id="_1">常用插件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://plugins.jenkins.io/pipeline-utility-steps/">Pipeline Utility Steps</a></p>
+<p><a href="https://plugins.jenkins.io/emailext-template">Email Extension Template Plugin</a></p>
+<p><a href="https://plugins.jenkins.io/git-parameter">Git Parameter Plug-In</a></p>
+<p><a href="https://plugins.jenkins.io/generic-webhook-trigger/">Generic Webhook Trigger</a></p>
+<p><a href="https://plugins.jenkins.io/kubernetes-cli">Kubernetes CLI Plugin</a></p>
+<p><a href="https://plugins.jenkins.io/role-strategy">Role-based Authorization Strategy</a></p>
+<p><a href="https://plugins.jenkins.io/scm-sync-configuration">SCM Sync Configuration Plugin</a></p>
+<p><a href="https://plugins.jenkins.io/ansible">Ansible plugin</a></p>
+<h2 id="docker-jenkins">使用 docker 版 jenkins<a class="headerlink" href="#docker-jenkins" title="Permanent link">&para;</a></h2>
+<p>当Jenkins运行在容器中时，因为Jenkins要执行很多Docker命令，比如build镜像、push镜像等，这就要面临一个问题——如何在容器化的Jenkins中运行Docker。通常我们会建议大家使用容器运行所在宿主机的Docker环境，而不是再在容器内启动一套</p>
+<h2 id="_2">必备方案<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ol>
+<li>jenkins 国内加速</li>
+</ol>
+<pre><code class="bash">
+# 进入更新配置位置
+cd {/var/lib/jenkins}/updates 
+
+# 方案 1 : 通过 vim 替换地址
+使用vim的命令，如下，替换所有插件下载的url
+
+:1,$s/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g
+
+# 方案 2 : 通过 sed 替换地址
+
+sed -i 's/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' default.json
+
+sed -i 's/http:\/\/www.google.com/https:\/\/www.baidu.com/g' default.json
+</code></pre>
+
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<ol>
+<li>在哪可以找到官方安装包
+https://updates.jenkins-ci.org/download/plugins/</li>
+</ol>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../env-dotfiles/" class="btn btn-neutral float-right" title="dotfile">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ops-zk/" class="btn btn-neutral" title="运维 - zookeeper"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -183,6 +259,10 @@ https://github.com/terasolunaorg/terasolunaorg.github.com/blob/master/guideline/
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../ops-zk/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../env-dotfiles/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
