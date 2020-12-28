@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Ying Cai <i@caiying.me>">
+  <link rel="canonical" href="https://www.ifnnn.cn/ops-kubernetes/">
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Ops kubernetes - Ying 的学习笔记</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Ying 的学习笔记</a>
         <div role="search">
@@ -45,98 +47,57 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">首页</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../about/">关于</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">分享</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../ppt-git-tutorial/">Git 入门手册</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">数据结构与算法</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../dsa-sort/">排序</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../dsa-indexing/">索引</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">OPS</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../ops-rabbitmq/">rabbitmq</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-docker/">docker</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-docker-alpine/">镜像构建</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-kafka/">运维 - kafka</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-zk/">运维 - zookeeper</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-jenkins/">运维 - jenkins</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">最佳实践</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../env-dotfiles/">dotfile</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../env-linux/">Linux</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../env-python/">Python</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">关于</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分享</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ppt-git-tutorial/">Git 入门手册</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">数据结构与算法</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../dsa-sort/">排序</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../dsa-indexing/">索引</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">OPS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-rabbitmq/">rabbitmq</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker/">docker</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker-alpine/">镜像构建</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-kafka/">运维 - kafka</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-zk/">运维 - zookeeper</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-jenkins/">运维 - jenkins</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">大数据</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../bigdata-airflow/">airflow</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">最佳实践</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-dotfiles/">dotfile</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-python/">Python</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -161,12 +122,83 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
             <div class="section">
               
-                
+                <p>journalctl -l -u kube-apiserver
+journalctl -l -u kube-controller-manager
+journalctl -l -u kube-scheduler
+journalctl -l -u kubelet
+journalctl -l -u kube-proxy</p>
+<p>/var/log/kube-apiserver.log</p>
+<p>/var/log/kube-scheduler.log</p>
+<p>/var/log/kube-controller-manager.log</p>
+<p>/var/log/kubelet.log</p>
+<p>/var/log/kube-proxy.log</p>
+<h2 id="kube-apiserver">kube-apiserver 日志<a class="headerlink" href="#kube-apiserver" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">PODNAME=$(kubectl -n kube-system get pod -l component=kube-apiserver -o jsonpath='{.items[0].metadata.name}')
+kubectl -n kube-system logs $PODNAME --tail 100
+# 以上命令操作假设控制平面以 Kubernetes 静态 Pod 的形式来运行。如果 kube-apiserver 是用 systemd 管理的，则需要登录到 master 节点上，然后使用 journalctl -u kube-apiserver 查看其日志。
+
+</code></pre>
+<h2 id="kube-controller-manager">kube-controller-manager 日志<a class="headerlink" href="#kube-controller-manager" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">PODNAME=$(kubectl -n kube-system get pod -l component=kube-controller-manager -o jsonpath='{.items[0].metadata.name}')
+kubectl -n kube-system logs $PODNAME --tail 100
+</code></pre>
+<p>以上命令操作假设控制平面以 Kubernetes 静态 Pod 的形式来运行。如果 kube-controller-manager 是用 systemd 管理的，则需要登录到 master 节点上，然后使用 journalctl -u kube-controller-manager 查看其日志。</p>
+<h2 id="kube-scheduler">kube-scheduler 日志<a class="headerlink" href="#kube-scheduler" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">PODNAME=$(kubectl -n kube-system get pod -l component=kube-scheduler -o jsonpath='{.items[0].metadata.name}')
+kubectl -n kube-system logs $PODNAME --tail 100
+</code></pre>
+<p>以上命令操作假设控制平面以 Kubernetes 静态 Pod 的形式来运行。如果 kube-scheduler 是用 systemd 管理的，则需要登录到 master 节点上，然后使用 journalctl -u kube-scheduler 查看其日志。</p>
+<h2 id="kube-dns">kube-dns 日志<a class="headerlink" href="#kube-dns" title="Permanent link">&para;</a></h2>
+<p>kube-dns 通常以 Addon 的方式部署，每个 Pod 包含三个容器，最关键的是 kubedns 容器的日志：</p>
+<pre><code class="language-bash">PODNAME=$(kubectl -n kube-system get pod -l k8s-app=kube-dns -o jsonpath='{.items[0].metadata.name}')
+kubectl -n kube-system logs $PODNAME -c kubedns
+</code></pre>
+<h2 id="kubelet">Kubelet 日志<a class="headerlink" href="#kubelet" title="Permanent link">&para;</a></h2>
+<p>Kubelet 通常以 systemd 管理。查看 Kubelet 日志需要首先 SSH 登录到 Node 上。</p>
+<pre><code class="language-bash">journalctl -l -u kubelet
+
+journalctl -u kube-controller-manage
+journalctl --since 15:00:00 -u kubelet
+</code></pre>
+<h2 id="kube-proxy">Kube-proxy 日志<a class="headerlink" href="#kube-proxy" title="Permanent link">&para;</a></h2>
+<p>Kube-proxy 通常以 DaemonSet 的方式部署，可以直接用 kubectl 查询其日志</p>
+<pre><code class="language-bash">$ kubectl -n kube-system get pod -l component=kube-proxy
+NAME               READY     STATUS    RESTARTS   AGE
+kube-proxy-42zpn   1/1       Running   0          1d
+kube-proxy-7gd4p   1/1       Running   0          3d
+kube-proxy-87dbs   1/1       Running   0          4d
+$ kubectl -n kube-system logs kube-proxy-42zpn
+</code></pre>
+<h1 id="pod">查看某个节点上的所有pod<a class="headerlink" href="#pod" title="Permanent link">&para;</a></h1>
+<p>kubectl get pods &ndash;all-namespaces -o wide &ndash;field-selector spec.nodeName=cn-beijing.10.8.205.207</p>
+<h1 id="node-pod">按所在 node 查看 pod<a class="headerlink" href="#node-pod" title="Permanent link">&para;</a></h1>
+<p>kubectl get pods &ndash;all-namespaces   -o wide &ndash;sort-by=&rdquo;{.spec.nodeName}&rdquo;</p>
+<h1 id="pod_1">按重启次数降序查看 pod<a class="headerlink" href="#pod_1" title="Permanent link">&para;</a></h1>
+<p>kubectl get pods &ndash;all-namespaces  &ndash;sort-by=&rdquo;{.status.containerStatuses[:1].restartCount}&rdquo;</p>
+<h1 id="pod-node">查看 pod 和其所在的 node<a class="headerlink" href="#pod-node" title="Permanent link">&para;</a></h1>
+<p>kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName &ndash;all-namespaces</p>
+<p>kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name &ndash;all-namespaces</p>
+<h1 id="pod_2">查看 pod 最近状态<a class="headerlink" href="#pod_2" title="Permanent link">&para;</a></h1>
+<p>kubectl -n solrcloud  get pod -o go-template=&rsquo;{{range.status.containerStatuses}}{{&ldquo;Container Name: &ldquo;}}{{.name}}{{&ldquo;\r\nLastState: &ldquo;}}{{.lastState}}{{end}}&rsquo; solrcloud-pro-2-2</p>
+<h1 id="pod_3">查看 pod 上一次的日志<a class="headerlink" href="#pod_3" title="Permanent link">&para;</a></h1>
+<p>kubectl -n solrcloud logs solrcloud-pro-2-0  &ndash;previous &ndash;tail 200</p>
+<h1 id="namespace">查看 namespace 下的事件信息<a class="headerlink" href="#namespace" title="Permanent link">&para;</a></h1>
+<p>kubectl -n solrcloud get events -n solrcloud &ndash;sort-by=&rsquo;.metadata.creationTimestamp&rsquo;</p>
+<h1 id="orphaned-pod-found-but-volume-paths-are-still-present-on-disk">Orphaned pod found - but volume paths are still present on disk<a class="headerlink" href="#orphaned-pod-found-but-volume-paths-are-still-present-on-disk" title="Permanent link">&para;</a></h1>
+<pre><code class="language-bash">cd /var/lib/kubelet/pods/86d60ee9-9fae-11e8-8cfc-525400290b20
+rm -rf 86d60ee9-9fae-11e8-8cfc-525400290b20
+</code></pre>
+<h1 id="_1">排错参考文章<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>https://www.bookstack.cn/read/kubernetes-practice-guide/troubleshooting-problems-pod-README.md</p>
+<p>https://kubernetes.feisky.xyz/troubleshooting/index</p>
+<p>https://kubernetes.io/docs/reference/kubectl/cheatsheet/</p>
+<p>https://www.cnblogs.com/duanxz/p/6148534.html</p>
               
             </div>
           </div>
@@ -178,11 +210,11 @@
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>© Copyright 2020, 京ICP备18023798号-1</p>
+      <p>© Copyright 2020, <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备18023798号-1</a></p>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -192,7 +224,7 @@
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -202,6 +234,11 @@
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

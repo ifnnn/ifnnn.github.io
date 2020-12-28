@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Ying Cai <i@caiying.me>">
+  <link rel="canonical" href="https://www.ifnnn.cn/dsa-sort/">
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>排序 - Ying 的学习笔记</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Ying 的学习笔记</a>
         <div role="search">
@@ -45,120 +47,85 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">首页</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../about/">关于</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">分享</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../ppt-git-tutorial/">Git 入门手册</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">数据结构与算法</span>
-    <ul class="subnav">
-                <li class=" current">
-                    
-    <a class="current" href="./">排序</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#_1">排序</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">关于</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分享</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ppt-git-tutorial/">Git 入门手册</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">数据结构与算法</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">排序</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">比较排序</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#_2">比较排序</a></li>
-        
-            <li><a class="toctree-l4" href="#_9">堆排序</a></li>
-        
-            <li><a class="toctree-l4" href="#_10">基数排序</a></li>
-        
-            <li><a class="toctree-l4" href="#_11">计数排序</a></li>
-        
-            <li><a class="toctree-l4" href="#_12">桶排序</a></li>
-        
-            <li><a class="toctree-l4" href="#_13">附录</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#_3">冒泡排序</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">选择排序</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">插入排序</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">归并排序</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">希尔排序</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">快速排序</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">堆排序</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">基数排序</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">计数排序</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_12">桶排序</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_13">附录</a>
+    </li>
     </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../dsa-indexing/">索引</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">OPS</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../ops-rabbitmq/">rabbitmq</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-docker/">docker</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-docker-alpine/">镜像构建</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-kafka/">运维 - kafka</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-zk/">运维 - zookeeper</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ops-jenkins/">运维 - jenkins</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">最佳实践</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../env-dotfiles/">dotfile</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../env-linux/">Linux</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../env-python/">Python</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../dsa-indexing/">索引</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">OPS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-rabbitmq/">rabbitmq</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker/">docker</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-docker-alpine/">镜像构建</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-kafka/">运维 - kafka</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-zk/">运维 - zookeeper</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-jenkins/">运维 - jenkins</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">大数据</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../bigdata-airflow/">airflow</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">最佳实践</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-dotfiles/">dotfile</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../env-python/">Python</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -187,6 +154,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -198,7 +166,7 @@
 <li><a href="https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html">排序可视化</a></li>
 </ul>
 <h3 id="_3">冒泡排序<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<pre><code class="java">void bubbleSort(int arr[]) { 
+<pre><code class="language-java">void bubbleSort(int arr[]) { 
     int n = arr.length; 
     for (int i = 0; i &lt; n-1; i++) 
         for (int j = 0; j &lt; n-i-1; j++) 
@@ -238,9 +206,8 @@ void bubbleSort(int arr[], int n) {
     } 
 } 
 </code></pre>
-
 <h3 id="_4">选择排序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<pre><code class="java">void selectionSort(int arr[]) {
+<pre><code class="language-java">void selectionSort(int arr[]) {
     int n = arr.length; 
 
     // One by one move boundary of unsorted subarray 
@@ -260,9 +227,8 @@ void bubbleSort(int arr[], int n) {
     } 
 }
 </code></pre>
-
 <h3 id="_5">插入排序<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<pre><code class="java">void insertionSort(int arr[]) { 
+<pre><code class="language-java">void insertionSort(int arr[]) { 
     int n = arr.length; 
     for (int i = 1; i &lt; n; ++i) { 
         int key = arr[i]; 
@@ -279,9 +245,8 @@ void bubbleSort(int arr[], int n) {
     } 
 }
 </code></pre>
-
 <h3 id="_6">归并排序<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<pre><code class="java">// Merges two subarrays of arr[]. 
+<pre><code class="language-java">// Merges two subarrays of arr[]. 
 // First subarray is arr[l..m] 
 // Second subarray is arr[m+1..r] 
 void merge(int arr[], int l, int m, int r) 
@@ -350,9 +315,8 @@ void sort(int arr[], int l, int r)
     } 
 }
 </code></pre>
-
 <h3 id="_7">希尔排序<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<pre><code class="java">/* function to sort arr using shellSort */
+<pre><code class="language-java">/* function to sort arr using shellSort */
 int sort(int arr[]) { 
     int n = arr.length; 
 
@@ -384,9 +348,8 @@ int sort(int arr[]) {
     return 0; 
 }
 </code></pre>
-
 <h3 id="_8">快速排序<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<pre><code class="java">/* This function takes last element as pivot, 
+<pre><code class="language-java">/* This function takes last element as pivot, 
    places the pivot element at its correct 
    position in sorted array, and places all 
    smaller (smaller than pivot) to left of 
@@ -436,9 +399,8 @@ void sort(int arr[], int low, int high) {
     } 
 } 
 </code></pre>
-
 <h2 id="_9">堆排序<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<pre><code class="java">void sort(int arr[]) { 
+<pre><code class="language-java">void sort(int arr[]) { 
     int n = arr.length; 
 
     // Build heap (rearrange array) 
@@ -485,9 +447,8 @@ void heapify(int arr[], int n, int i) {
     } 
 } 
 </code></pre>
-
 <h2 id="_10">基数排序<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<pre><code class="java">// A utility function to get maximum value in arr[] 
+<pre><code class="language-java">// A utility function to get maximum value in arr[] 
 int getMax(int arr[], int n) { 
     int mx = arr[0]; 
     for (int i = 1; i &lt; n; i++) 
@@ -539,9 +500,8 @@ void radixsort(int arr[], int n) {
         countSort(arr, n, exp); 
 } 
 </code></pre>
-
 <h2 id="_11">计数排序<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<pre><code class="java">void sort(char arr[]) { 
+<pre><code class="language-java">void sort(char arr[]) { 
     int n = arr.length; 
 
     // The output character array that will have sorted arr 
@@ -576,9 +536,8 @@ void radixsort(int arr[], int n) {
         arr[i] = output[i]; 
 }
 </code></pre>
-
 <h2 id="_12">桶排序<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
-<pre><code class="java">void bucketSort(int[] intArr, int noOfBuckets){
+<pre><code class="language-java">void bucketSort(int[] intArr, int noOfBuckets){
     // Create bucket array
     List&lt;Integer&gt;[] buckets = new List[noOfBuckets];
     // Associate a list with each index 
@@ -610,7 +569,6 @@ int hash(int num){
     return num/10;
 }
 </code></pre>
-
 <h2 id="_13">附录<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">Data Structure Visualizations</a></li>
@@ -637,11 +595,11 @@ int hash(int num){
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>© Copyright 2020, 京ICP备18023798号-1</p>
+      <p>© Copyright 2020, <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备18023798号-1</a></p>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -651,7 +609,7 @@ int hash(int num){
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -665,6 +623,11 @@ int hash(int num){
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
