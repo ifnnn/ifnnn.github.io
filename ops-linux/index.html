@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Ying Cai <i@caiying.me>">
-  <link rel="canonical" href="https://www.ifnnn.cn/bigdata-overview/">
+  <link rel="canonical" href="https://www.ifnnn.cn/ops-linux/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Bigdata overview - Ying 的学习笔记</title>
+  <title>Linux - Ying 的学习笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Bigdata overview";
-    var mkdocs_page_input_path = "bigdata-overview.md";
-    var mkdocs_page_url = "/bigdata-overview/";
+    var mkdocs_page_name = "Linux";
+    var mkdocs_page_input_path = "ops-linux.md";
+    var mkdocs_page_url = "/ops-linux/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -73,8 +73,12 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">DevOps</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ops-linux/">Linux</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">进程/线程 相关</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ops-kubernetes/">Kubernetes</a>
                     </li>
@@ -125,8 +129,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>DevOps &raquo;</li>
+        
+      
     
-    <li>Bigdata overview</li>
+    <li>Linux</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -137,21 +145,48 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>Hadoop 生态</p>
-<p>数据存储：HDFS、HBase</p>
-<p>数据处理：MapReduce、YARN（集群和资源管理）</p>
-<p>数据访问层：Hive、Pig、Mahout</p>
-<p>Spark 替代 Hadoop 生态汇总的 MapReduce，不依赖 Hadoop，可以独立运行于 Kubernetes 等</p>
-<p>Spark SQL（支持结构化数据）</p>
-<p>Spark Streaming（处理实时数据）</p>
-<p>MLlib（机器学习）</p>
-<p>GraphX（图计算）</p>
-<p>SparkR（统计分析）</p>
+                <h1 id="linux-ops">Linux Ops<a class="headerlink" href="#linux-ops" title="Permanent link">&para;</a></h1>
+<h2 id="_1">进程/线程 相关<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># 查询系统最大支持线程数
+cat /proc/sys/kernel/threads-max
+
+# 查询当前已用线程数量
+pstree -p | wc -l
+# 打印所有进程及其线程
+pstree -p
+# 打印某个进程的线程数
+pstree -p {pid} | wc -l
+
+ps -Flww -p 3130
+
+pgrep java | xargs -I {} sh -c &quot;echo -n {}:; pstree -p {} | wc -l&quot;
+
+# https://askubuntu.com/questions/88972/how-to-get-from-terminal-total-number-of-threads-per-process-and-total-for-al
+ps -eo nlwp | tail -n +2 | awk '{ num_threads += $1 } END { print num_threads }'
+
+
+# 查看不同状态的连接数数量
+netstat -ant | awk '/^tcp/ {++y[$NF]} END {for(w in y) print w, y[w]}'
+
+# 查看每个ip跟server建立的连接数
+netstat -napto|egrep -v &quot;and|Address&quot; | awk '{print$5}'|awk -F : '{print$1}'|sort|uniq -c|sort -rn
+
+# 这个跟ip的连接最多
+netstat -napto|grep 9.14.6.183
+</code></pre>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ops-kubernetes/" class="btn btn-neutral float-right" title="Kubernetes">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../mysql/tips-mysql-index/" class="btn btn-neutral" title="MySQL 规范"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -177,6 +212,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../mysql/tips-mysql-index/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ops-kubernetes/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

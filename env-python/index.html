@@ -67,8 +67,17 @@
                     <li class="toctree-l1"><a class="reference internal" href="../dsa-indexing/">索引</a>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">OPS</span></p>
+                <p class="caption"><span class="caption-text">后端研发</span></p>
                 <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../mysql/tips-mysql-index/">MySQL 规范</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">DevOps</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ops-kubernetes/">Kubernetes</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ops-rabbitmq/">rabbitmq</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ops-docker/">docker</a>
@@ -136,7 +145,37 @@
               
                 <h2 id="python-env">python env<a class="headerlink" href="#python-env" title="Permanent link">&para;</a></h2>
 <p>anaconda</p>
-<pre><code class="language-shell">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn &lt;packagename&gt;
+<p>配置镜像： <a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">清华大学开源软件镜像站</a></p>
+<pre><code class="language-shell">
+conda list --show-channel-urls
+conda info -e
+
+conda create --name py35 python=3.5
+
+conda remove --name py35 --all
+
+source activate py35 / conda activate py373
+conda deactivate
+
+conda install -n py35 numpy
+conda update -n py35 numpy
+conda remove -n py35 numpy
+
+conda list -n py35
+
+conda update conda
+conda update anaconda
+
+# 假设当前环境是python 3.5, conda会将python升级为3.5.x系列的当前最新版本
+conda update python
+
+conda clean -i
+
+# 重命名 env
+conda create --name new_name --clone old_name
+conda remove --name old_name --all # or its alias: `conda env remove --name old_name`
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn &lt;packagename&gt;
 
 pip install -i http://pypi.douban.com/simple --trusted-host pypi.douban.com &lt;packagename&gt;
 

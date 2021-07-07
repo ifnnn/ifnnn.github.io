@@ -1,63 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://www.ifnnn.cn/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/about/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/ppt-git-tutorial/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/dsa-sort/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/dsa-indexing/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.ifnnn.cn/mysql/tips-mysql-index/</loc>
+     <lastmod>2021-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.ifnnn.cn/ops-linux/</loc>
+     <lastmod>2021-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.ifnnn.cn/ops-kubernetes/</loc>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/ops-rabbitmq/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/ops-docker/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/ops-docker-alpine/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/ops-kafka/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/ops-zk/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/ops-jenkins/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/bigdata-airflow/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/env-dotfiles/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/env-linux/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.ifnnn.cn/env-python/</loc>
-     <lastmod>2020-12-28</lastmod>
+     <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
