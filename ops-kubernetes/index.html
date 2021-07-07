@@ -82,9 +82,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pod">快速查找 pod</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">问题处理</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">金丝雀发布</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">参考链接</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">问题处理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">参考链接</a>
     </li>
     </ul>
                     </li>
@@ -227,12 +229,83 @@ kubectl -n solrcloud get events -n solrcloud --sort-by='.metadata.creationTimest
 
 kubectl -n pro get events --sort-by='.metadata.creationTimestamp'
 </code></pre>
-<h2 id="_2">问题处理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">金丝雀发布<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<pre><code>kubectl -n uat get deployment svc-product-service
+
+kubectl -n uat get pod | grep svc-product-service
+
+kubectl -n uat get deployment svc-product-service -o=jsonpath='{$.spec.template.spec.containers[:1].image}'
+
+kubectl -n uat get pods --all-namespaces -o jsonpath=&quot;{..image}&quot;  
+
+kubectl -n uat get pods -o jsonpath=&quot;{..image}&quot; | tr -s '[[:space:]]' '\n' | sort | uniq -c | grep svc-product-service
+
+kubectl -n uat get pods -o jsonpath=&quot;{.items[*].spec.containers[*].image}&quot; | tr -s '[[:space:]]' '\n' | sort | uniq -c | grep svc-product-service
+
+
+kubectl get pods --all-namespaces -o jsonpath=&quot;{.items[*].spec.containers[*].image}&quot;
+
+
+kubectl -n uat set image deployment svc-product-service svc-product-service=registry-vpc.cn-beijing.aliyuncs.com/xinshang/svc-product-service:2b6cf7f &amp;&amp; kubectl -n uat rollout pause deployment svc-product-service
+
+
+kubectl -n uat rollout resume deploy svc-product-service
+
+
+kubectl -n uat rollout history deploy svc-product-service
+
+kubectl -n uat rollout history deploy svc-product-service --revision=41
+
+kubectl -n uat rollout undo deploy myapp-deploy --to-revision=1
+
+kubectl -n uat get pods -o jsonpath=&quot;{..image}&quot; | tr -s '[[:space:]]' '\n' 
+
+kubectl set image deployment/frontend www=image:v2               # Rolling update &quot;www&quot; containers of &quot;frontend&quot; deployment, updating the image
+kubectl rollout history deployment/frontend                      # Check the history of deployments including the revision 
+kubectl rollout undo deployment/frontend                         # Rollback to the previous deployment
+kubectl rollout undo deployment/frontend --to-revision=2         # Rollback to a specific revision
+kubectl rollout status -w deployment/frontend                    # Watch rolling update status of &quot;frontend&quot; deployment until completion
+kubectl rollout restart deployment/frontend                      # Rolling restart of the &quot;frontend&quot; deployment
+
+
+# 测试版本 2b6cf7f/9195082
+# 查 deployment 
+kubectl -n uat get deployment svc-product-service -owide
+
+# 查 pod
+kubectl -n uat get pods -o jsonpath=&quot;{.items[*].spec.containers[*].image}&quot; | tr -s '[[:space:]]' '\n' | sort | uniq -c | grep svc-product-service
+
+kubectl -n uat get pod -owide | grep svc-product-service
+
+
+# 查历史发布版本
+kubectl -n uat rollout history deploy svc-product-service
+
+kubectl -n uat rollout history deploy svc-product-service --revision=41
+
+# 改版本 &amp; 暂停滚动
+
+kubectl -n uat set image deployment svc-product-service svc-product-service=registry-vpc.cn-beijing.aliyuncs.com/xinshang/svc-product-service:9195082 &amp;&amp; \ 
+kubectl -n uat rollout pause deployment svc-product-service
+
+kubectl -n uat edit deployment svc-product-service
+
+# 恢复滚动
+kubectl -n uat rollout resume deploy svc-product-service
+
+kubectl -n uat scale --replicas=1 deployment/svc-product-service
+
+</code></pre>
+<ul>
+<li>https://kubernetes.io/docs/reference/kubectl/cheatsheet/</li>
+<li>https://kubernetes.io/zh/docs/concepts/workloads/controllers/deployment/#canary-deployment</li>
+</ul>
+<h2 id="_3">问题处理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash"># Orphaned pod found - but volume paths are still present on disk
 cd /var/lib/kubelet/pods/86d60ee9-9fae-11e8-8cfc-525400290b20
 rm -rf 86d60ee9-9fae-11e8-8cfc-525400290b20
 </code></pre>
-<h2 id="_3">参考链接<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">参考链接<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://www.bookstack.cn/read/kubernetes-practice-guide/troubleshooting-problems-pod-README.md</li>
 <li>https://kubernetes.feisky.xyz/troubleshooting/index</li>
